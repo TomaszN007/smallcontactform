@@ -267,6 +267,9 @@ return [
 
       'allow_autoreply' => 'Allow auto reply',
       'allow_autoreply_comment' => 'Send a form content copy to author',
+      
+      'allow_show_sender' => 'Allow to answer from email sender',
+      'allow_show_sender_comment' => 'Answer directly to sender email',
 
       'autoreply_name_field' => 'NAME form field',
       'autoreply_name_field_empty_option' => '-- Select --',
