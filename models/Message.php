@@ -226,13 +226,22 @@ class Message extends Model
         }
 
 
-		Mail::{$method}($template, ['fields' => $output], function($message) use($sendTo){
+        Mail::{$method}($template, ['fields' => $output], function($message) use($sendTo, $output){
 
 			$message->to($sendTo);
 
-			// From address
-			if( Settings::getTranslated('email_address_from') ) {
-				$message->from(Settings::getTranslated('email_address_from'), Settings::getTranslated('email_address_from_name'));
+			if( Settings::getTranslated('notification_from_sender') )
+			{
+			    $sendFrom = Settings::getTranslated('autoreply_email_field');
+			    
+			    if( isset($output[$sendFrom]) ){
+			        $message->from($output[$sendFrom]);
+			    }
+			} else {
+			    // From address
+			    if( Settings::getTranslated('email_address_from') ) {
+			        $message->from(Settings::getTranslated('email_address_from'), Settings::getTranslated('email_address_from_name'));
+			    }
 			}
 
 		});
